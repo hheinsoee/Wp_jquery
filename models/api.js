@@ -1,10 +1,17 @@
+function getWPinfo(suteUrl, cb) {
+    $.get(`${suteUrl}/?rest_route=/wp/v2`, function (data) {
+        cb(data);
+    }).fail(function () {
+        cb(false);
+    })
+}
 function getCategories(suteUrl, cb) {
-    $.get(`${suteUrl}/wp-json/wp/v2/categories`, function (data) {
+    $.get(`${suteUrl}/?rest_route=/wp/v2/categories`, function (data) {
         cb(data);
     })
 }
 function getPosts(suteUrl, cb) {
-    var endPoint = `${suteUrl}//?rest_route=/wp/v2/posts`;
+    var endPoint = `${suteUrl}/?rest_route=/wp/v2/posts`;
     var query = {
         orderby: 'date',
         // offset: 10,

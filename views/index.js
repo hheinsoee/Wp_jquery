@@ -1,17 +1,19 @@
-indexPage = () => {
+indexPage = (msg='') => {
     $('#app').html(
         `<div class="d-flex justify-content-center align-items-center" style="min-height:100vh;">
         <div>
             <h5>input any wordpress website URL</h5>
             <form class="d-flex">
-            <input class="form-control" name="site" type="text" placeholder="https://dvb.no" aria-label="WP url">
+            <input class="form-control" name="site" type="text" placeholder="https://dvb.no" aria-label="WP url" value="${urlParams.site}">
             <button class="btn btn-outline-success" type="submit">GO</button>
             </form>
+            <div>${msg}</div>
             </div>
         </div>`
     )
 }
-wp = (site, query = null) => {
+
+wpPage = (site) => {
 
     $('#app').html(
         `
