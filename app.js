@@ -1,15 +1,13 @@
 //website
 if (wp_site = urlParams.site) {
-    indexPage(`Checking ${wp_site}`)
-    getWPinfo(wp_site, (data) => {
-        if (data) {
-            wpPage(wp_site)
-        }
-        else {
-            indexPage(`${wp_site} is not using wordpress`)
-        }
-    })
-
+    wpPage(wp_site)
 } else {
-    indexPage()
+    indexPage(`
+    <ul>
+        <li>https://dvb.no</li>
+        <li>https://arakanprincess.media</li>
+        <li>https://sportsmyanmar.com</li>
+        <li>https://channelmyanmar.org</li>
+    </ul>
+    `)
 }

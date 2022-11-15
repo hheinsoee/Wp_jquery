@@ -1,17 +1,19 @@
-function getWPinfo(suteUrl, cb) {
+function getWPinfo(cb) {
     $.get(`${suteUrl}/?rest_route=/wp/v2`, function (data) {
         cb(data);
     }).fail(function () {
         cb(false);
     })
 }
-function getCategories(suteUrl, cb) {
-    $.get(`${suteUrl}/?rest_route=/wp/v2/categories`, function (data) {
+function getCategories(cb) {
+    $.get(`${urlParams.site}/?rest_route=/wp/v2/categories`, function (data) {
         cb(data);
+    }).fail(function () {
+        cb(false);
     })
 }
-function getPosts(suteUrl, cb) {
-    var endPoint = `${suteUrl}/?rest_route=/wp/v2/posts`;
+function getPosts(query, cb) {
+    var endPoint = `${urlParams.site}/?rest_route=/wp/v2/posts`;
     var query = {
         orderby: 'date',
         // offset: 10,
@@ -27,6 +29,16 @@ function getPosts(suteUrl, cb) {
     var url = endPoint + "&" + jQuery.param(query);
     $.get(url, function (data) {
         cb(data);
+    }).fail(function () {
+        cb(false);
+    })
+}
+function getThePosts(id, cb) {
+    var endPoint = `${urlParams.site}/?rest_route=/wp/v2/posts/${id}`;
+    $.get(endPoint, function (data) {
+        cb(data);
+    }).fail(function () {
+        cb(false);
     })
 }
 
