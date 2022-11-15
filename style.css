@@ -1,0 +1,17 @@
+body{
+    overflow-x: hidden;
+}
+.limitHeight{
+    max-height: 200px;
+    background-color: black;
+    object-fit: contain;
+}
+img{
+    max-width: 100%;
+    object-fit: cover;
+    max-height: 500px;
+}
+iframe{
+    max-width: 100%;
+    max-height: 60%;
+}
