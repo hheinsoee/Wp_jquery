@@ -26,32 +26,3 @@ $.date = function (dateObject) {
 
     return date;
 };
-showPopUpPost = (id) => {
-
-    $('#popUPModal').modal('show');
-    $('#popUpContent').html("<div class='p-5'>loading..</div>")
-    getThePosts(id, (data) => {
-        if (data) {
-            var post = {
-                id: data.id,
-                title: data.title,
-                date: data.date,
-                excerpt: data.excerpt,
-                content: data.content,
-                image: data.jetpack_featured_media_url || null
-            }
-            $('#popUpContent').html(
-                `
-                ${post.image ? `<img class="card-img-top" src="${post.image}">` : ""}
-                <div class="p-2 read">
-                    <h2>${post.title.rendered}</h2>
-                    <date>${$.date(post.date)}</date>
-                    <div>${post.content.rendered}</div>
-                </div>
-                `
-            )
-        }else{
-            $('#popUpContent').html("Something Wrong")
-        }
-    })
-}

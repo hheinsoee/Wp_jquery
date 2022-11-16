@@ -3,11 +3,11 @@ if (wp_site = urlParams.site) {
     wpPage(wp_site)
 } else {
     indexPage(`
-    <ul>
-        <li>https://dvb.no</li>
-        <li>https://arakanprincess.media</li>
-        <li>https://sportsmyanmar.com</li>
-        <li>https://channelmyanmar.org</li>
-    </ul>
+    <div class="font-weight-light text-mute">
+        <a href="?site=https://dvb.no">https://dvb.no</a><br/>
+        <a href="?site=https://arakanprincess.media">https://arakanprincess.media</a><br/>
+        <a href="?site=https://sportsmyanmar.com">https://sportsmyanmar.com</a><br/>
+        <a href="?site=https://channelmyanmar.org">https://channelmyanmar.org</a><br/>
+    </div>
     `)
 }

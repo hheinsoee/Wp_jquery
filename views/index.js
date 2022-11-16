@@ -3,9 +3,9 @@ indexPage = (msg = '') => {
         `<div class="d-flex justify-content-center align-items-center" style="min-height:100vh;">
         <div>
             <h5>input any wordpress website URL</h5>
-            <small>http or https ပါရပါမည်</small>
-            <form class="d-flex">
-            <input class="form-control" name="site" type="text" placeholder="https://dvb.no" aria-label="WP url" value="${urlParams.site || ''}">
+            <small>http:// or https:// ပါရပါမည်</small>
+            <form class="d-flex py-4">
+            <input class="form-control me-2" name="site" type="text" placeholder="eg: https://dvb.no" aria-label="WP url" value="${urlParams.site || ''}">
             <button class="btn btn-outline-success" type="submit">GO</button>
             </form>
             <div>${msg}</div>
@@ -13,21 +13,53 @@ indexPage = (msg = '') => {
         </div>`
     )
 }
-
+showPopUpPost = (id) => {
+    $('#popUPModal').modal('show');
+    $('#popUpContent').html("<div class='modal-body'><center>loading..</center></div>")
+    getThePost(id, (data) => {
+        if (data) {
+            var post = {
+                id: data.id,
+                title: data.title,
+                date: data.date,
+                excerpt: data.excerpt,
+                content: data.content,
+                image: data.jetpack_featured_media_url || null
+            }
+            $('#popUpContent').html(
+                `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${post.title.rendered}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-lsbel="Close"></button>
+                    </div>
+                    ${post.image ? `<img class="card-img-top" src="${post.image}">` : ""}
+                    <div class="modal-body read">
+                        <date>${$.date(post.date)}</date>
+                        <div>${post.content.rendered}</div>
+                    </div>
+                </div>
+                `
+            )
+        }else{
+            $('#popUpContent').html("Something Wrong")
+        }
+    })
+}
 wpPage = () => {
     var site = urlParams.site
     $('#app').html(
         `
-        <div id="allCats">loading..</div>
+        <div id="allCats"><center>loading..</center></div>
         <div class="container">
             <div id="postsContainer" class="row">
-                <div class"h1">Loading</div>
             </div>
         </div>
         `
     )
     getCategories((allCats) => {
         if (allCats) {
+            $("#postsContainer").html('<div class"h1"><center>Loading..</center></div>');
             var categoryButtons = '';
             $.each(allCats, function (index, value) {
                 categoryButtons += `

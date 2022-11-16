@@ -8,7 +8,8 @@ function getWPinfo(cb) {
 function getCategories(cb) {
     $.get(`${urlParams.site}/?rest_route=/wp/v2/categories`, function (data) {
         cb(data);
-    }).fail(function () {
+    }).fail(function (err) {
+        console.log(err)
         cb(false);
     })
 }
@@ -33,7 +34,7 @@ function getPosts(query, cb) {
         cb(false);
     })
 }
-function getThePosts(id, cb) {
+function getThePost(id, cb) {
     var endPoint = `${urlParams.site}/?rest_route=/wp/v2/posts/${id}`;
     $.get(endPoint, function (data) {
         cb(data);
