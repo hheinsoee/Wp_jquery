@@ -99,7 +99,7 @@ wpPage = () => {
                             `
                                 <div class=" col-12 col-sm-6 col-md-4 col-lg-3">
                                     <div class="card mb-2" onclick='showPopUpPost(${post.id})'>
-                                    ${post.image ? `<img class="card-img-top limitHeight" src="${post.image}">` : ""}
+                                    ${post.image ? `<img class="card-img-top limitHeight" src="${post.image}">` : "<div class='bg-dark' style='200px'></div>"}
                                     <div class="card-body">
                                         <date>${$.date(post.date)}</date>
                                         <h5 class="card-title">
