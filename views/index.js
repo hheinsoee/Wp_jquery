@@ -41,7 +41,7 @@ showPopUpPost = (id) => {
                 </div>
                 `
             )
-        }else{
+        } else {
             $('#popUpContent').html("Something Wrong")
         }
     })
@@ -93,7 +93,7 @@ wpPage = () => {
                             id: v.id,
                             title: v.title,
                             date: v.date,
-                            image: v._embedded&&v._embedded["wp:featuredmedia"][0] ? v._embedded["wp:featuredmedia"][0].source_url : null
+                            image: v._embedded && v._embedded["wp:featuredmedia"] ? v._embedded["wp:featuredmedia"][0].source_url : null
                         }
                         postsThumbnails +=
                             `
